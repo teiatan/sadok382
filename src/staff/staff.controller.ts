@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateStaffMemberDto } from './dtos/create-staff-member.dto';
 
 @Controller('staff')
 export class StaffController {
@@ -8,7 +9,7 @@ export class StaffController {
   }
 
   @Post()
-  createStaffMember(@Body() body: any) {
+  createStaffMember(@Body() body: CreateStaffMemberDto) {
     console.log(body);
   }
 
