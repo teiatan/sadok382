@@ -1,0 +1,14 @@
+### List all staff
+GET http://localhost:3000/staff
+
+### Create a neww staff member
+POST http://localhost:3000/staff
+Content-Type: application/json
+
+{
+    "name":"Tetiana",
+    "surname":"Protas"
+}
+
+### Get staff member
+GET http://localhost:3000/staff/123
