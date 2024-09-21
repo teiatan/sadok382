@@ -1,13 +1,19 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('staff')
 export class StaffController {
   @Get()
-  listStaff() {}
+  listStaff() {
+    return 'goooood';
+  }
 
   @Post()
-  createStaffMember() {}
+  createStaffMember(@Body() body: any) {
+    console.log(body);
+  }
 
   @Get('/:id')
-  getStaffMember() {}
+  getStaffMember(@Param() id: string) {
+    console.log(id);
+  }
 }
