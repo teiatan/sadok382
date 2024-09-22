@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { CreateStaffMemberDto } from './dtos/create-staff-member.dto';
 import { StaffService } from './staff.service';
 
@@ -21,7 +28,11 @@ export class StaffController {
   }
 
   @Get('/:id')
-  getStaffMember(@Param() params: { id: string }) {
-    return this.staffService.findOne(params.id);
+  async getStaffMember(@Param() params: { id: string }) {
+    const staffMember = await this.staffService.findOne(params.id);
+    if (!staffMember) {
+      throw new NotFoundException(`no staff member with ${params.id} id`);
+    }
+    return staffMember;
   }
 }
