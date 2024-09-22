@@ -11,4 +11,4 @@ Content-Type: application/json
 }
 
 ### Get staff member
-GET http://localhost:3000/staff/123
+GET http://localhost:3000/staff/918

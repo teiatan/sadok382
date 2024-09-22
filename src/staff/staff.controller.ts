@@ -1,20 +1,27 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateStaffMemberDto } from './dtos/create-staff-member.dto';
+import { StaffService } from './staff.service';
 
 @Controller('staff')
 export class StaffController {
+  staffService: StaffService;
+
+  constructor() {
+    this.staffService = new StaffService();
+  }
+
   @Get()
   listStaff() {
-    return 'goooood';
+    return this.staffService.findAll();
   }
 
   @Post()
   createStaffMember(@Body() body: CreateStaffMemberDto) {
-    console.log(body);
+    return this.staffService.create(body);
   }
 
   @Get('/:id')
-  getStaffMember(@Param() id: string) {
-    console.log(id);
+  getStaffMember(@Param() params: { id: string }) {
+    return this.staffService.findOne(params.id);
   }
 }
